@@ -1,0 +1,362 @@
+{
+  "scenario": "storm_naive_retry",
+  "backend": "standin",
+  "requests": 40,
+  "offered_per_min": 400.0,
+  "planned_duration_s": 6.0,
+  "wall_s": 15.0,
+  "peak_queue": 1,
+  "client_stats": {
+    "attempts": 239,
+    "retries": 187,
+    "n429": 225,
+    "budget_denied": 0,
+    "circuit_open": 0
+  },
+  "limiter_429_events": [
+    {
+      "t": 36023.904784,
+      "kind": "itpm",
+      "retry_after": 59.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 178. Please try again in 58.72s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36023.9339599,
+      "kind": "itpm",
+      "retry_after": 59.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 171. Please try again in 58.69s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36023.9661587,
+      "kind": "itpm",
+      "retry_after": 60.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 829. Please try again in 59.03s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36024.0710481,
+      "kind": "itpm",
+      "retry_after": 59.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 168. Please try again in 58.55s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36024.0759008,
+      "kind": "itpm",
+      "retry_after": 59.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 1105. Please try again in 58.92s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36024.1205151,
+      "kind": "itpm",
+      "retry_after": 59.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 913. Please try again in 58.88s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36024.2732002,
+      "kind": "itpm",
+      "retry_after": 59.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 936. Please try again in 58.72s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36024.3193478,
+      "kind": "itpm",
+      "retry_after": 59.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 175. Please try again in 58.30s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36024.7316558,
+      "kind": "itpm",
+      "retry_after": 59.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 911. Please try again in 58.26s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36024.7359583,
+      "kind": "itpm",
+      "retry_after": 58.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 177. Please try again in 57.89s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36024.9038901,
+      "kind": "itpm",
+      "retry_after": 58.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 178. Please try again in 57.72s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36024.9049721,
+      "kind": "itpm",
+      "retry_after": 58.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 174. Please try again in 57.72s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36024.9477667,
+      "kind": "itpm",
+      "retry_after": 58.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 171. Please try again in 57.67s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36024.9779752,
+      "kind": "itpm",
+      "retry_after": 59.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 829. Please try again in 58.01s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36025.0879724,
+      "kind": "itpm",
+      "retry_after": 58.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 1105. Please try again in 57.91s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36025.0889349,
+      "kind": "itpm",
+      "retry_after": 58.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 168. Please try again in 57.53s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36025.1324141,
+      "kind": "itpm",
+      "retry_after": 58.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 913. Please try again in 57.88s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36025.1945108,
+      "kind": "itpm",
+      "retry_after": 58.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 167. Please try again in 57.42s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36025.2866319,
+      "kind": "itpm",
+      "retry_after": 58.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 936. Please try again in 57.72s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36025.3385244,
+      "kind": "itpm",
+      "retry_after": 58.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 175. Please try again in 57.28s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36025.3397589,
+      "kind": "itpm",
+      "retry_after": 58.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 170. Please try again in 57.28s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36025.342278,
+      "kind": "itpm",
+      "retry_after": 58.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 160. Please try again in 57.28s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36025.383858,
+      "kind": "itpm",
+      "retry_after": 58.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 163. Please try again in 57.23s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36025.6651614,
+      "kind": "itpm",
+      "retry_after": 57.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 162. Please try again in 56.95s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36025.7439139,
+      "kind": "itpm",
+      "retry_after": 58.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 911. Please try again in 57.25s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36025.7450201,
+      "kind": "itpm",
+      "retry_after": 57.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 177. Please try again in 56.88s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36025.7905989,
+      "kind": "itpm",
+      "retry_after": 57.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 165. Please try again in 56.83s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36025.914944,
+      "kind": "itpm",
+      "retry_after": 57.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 174. Please try again in 56.70s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.0720918,
+      "kind": "itpm",
+      "retry_after": 57.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 158. Please try again in 56.55s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.1494718,
+      "kind": "itpm",
+      "retry_after": 57.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 170. Please try again in 56.47s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.2100315,
+      "kind": "itpm",
+      "retry_after": 57.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 167. Please try again in 56.41s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.2726014,
+      "kind": "itpm",
+      "retry_after": 57.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 167. Please try again in 56.34s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.3383785,
+      "kind": "itpm",
+      "retry_after": 57.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 175. Please try again in 56.28s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.3406948,
+      "kind": "itpm",
+      "retry_after": 57.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 160. Please try again in 56.28s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.3419817,
+      "kind": "itpm",
+      "retry_after": 57.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 170. Please try again in 56.28s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.3448162,
+      "kind": "itpm",
+      "retry_after": 57.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 168. Please try again in 56.28s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.395913,
+      "kind": "itpm",
+      "retry_after": 57.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 163. Please try again in 56.23s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.5543432,
+      "kind": "itpm",
+      "retry_after": 57.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 169. Please try again in 56.06s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.6787793,
+      "kind": "itpm",
+      "retry_after": 56.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 162. Please try again in 55.94s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.8071474,
+      "kind": "itpm",
+      "retry_after": 56.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 165. Please try again in 55.81s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.8094193,
+      "kind": "itpm",
+      "retry_after": 56.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 170. Please try again in 55.81s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.8104109,
+      "kind": "itpm",
+      "retry_after": 56.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 164. Please try again in 55.81s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.9099501,
+      "kind": "itpm",
+      "retry_after": 56.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 178. Please try again in 55.72s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.9747396,
+      "kind": "itpm",
+      "retry_after": 56.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 171. Please try again in 55.66s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.9764873,
+      "kind": "itpm",
+      "retry_after": 56.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 166. Please try again in 55.66s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36026.9788272,
+      "kind": "itpm",
+      "retry_after": 57.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 829. Please try again in 56.01s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36027.070888,
+      "kind": "itpm",
+      "retry_after": 56.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 158. Please try again in 55.55s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36027.0720492,
+      "kind": "itpm",
+      "retry_after": 56.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 178. Please try again in 55.55s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36027.103036,
+      "kind": "itpm",
+      "retry_after": 56.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 1105. Please try again in 55.89s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 36027.1045286,
+      "kind": "itpm",
+      "retry_after": 56.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6928, Requested 168. Please try again in 55.51s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    }
+  ],
+  "limits_after": {
+    "rpm": 30,
+    "tpm": 8000,
+    "itpm": 7000,
+    "rpd": 1000
+  },
+  "pipeline_counters": {
+    "cache_hit": 0,
+    "coalesced": 0,
+    "local_refusals": 0,
+    "revisions": 1,
+    "grounding_fail": 0,
+    "llm_fallback": 39
+  },
+  "standin_cfg": {
+    "rpm": 30,
+    "tpm": 8000,
+    "itpm": 7000,
+    "fail_rate": 0.02,
+    "hang_rate": 0.01,
+    "slow_success_rate": 0.02
+  },
+  "standin_counts": {
+    "total": 239,
+    "ok": 13,
+    "r429": 225,
+    "fail": 0,
+    "hang": 1,
+    "max_inflight": 7
+  },
+  "note": "40 requests in 6 s, admission control OFF",
+  "admission": false,
+  "retry": {
+    "max_attempts": 6,
+    "base_delay_s": 1.0,
+    "max_delay_s": 2.0,
+    "jitter": false,
+    "honor_retry_after": false,
+    "attempt_timeout_s": 12.0,
+    "retry_budget_ratio": 0.2,
+    "retry_budget_burst": 10,
+    "use_budget": false,
+    "cooldown_on_429": false
+  }
+}

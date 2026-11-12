@@ -1,0 +1,23 @@
+[
+  {"id": "q01", "q": "What value of label smoothing did the Transformer authors use during training?", "kind": "answerable", "docs": ["1706"], "must": [["0\\.1"]]},
+  {"id": "q02", "q": "How many identical layers make up the Transformer's encoder stack?", "kind": "answerable", "docs": ["1706"], "must": [["\\b6\\b|\\bsix\\b"]]},
+  {"id": "q03", "q": "How many steps and how many hours did the Transformer base models train for, and on what hardware?", "kind": "answerable", "docs": ["1706"], "must": [["100,?000"], ["12 hours|twelve hours"], ["P100"]]},
+  {"id": "q04", "q": "Why do the Transformer authors scale the dot products by 1/sqrt(dk)?", "kind": "answerable", "docs": ["1706"], "must": [["gradient"]]},
+  {"id": "q05", "q": "How many warmup steps does the Transformer's learning rate schedule use?", "kind": "answerable", "docs": ["1706"], "must": [["4,?000"]]},
+  {"id": "q06", "q": "What BLEU score did the big Transformer reach on WMT 2014 English-to-German?", "kind": "answerable", "docs": ["1706"], "must": [["28\\.4"]]},
+  {"id": "q07", "q": "What are Moshi's theoretical and practical latencies?", "kind": "answerable", "docs": ["2410"], "must": [["160 ?ms"], ["200 ?ms"]]},
+  {"id": "q08", "q": "What frame rate and bitrate does Moshi's neural audio codec use?", "kind": "answerable", "docs": ["2410"], "must": [["12\\.5 ?Hz"], ["1\\.1 ?kbps"]]},
+  {"id": "q09", "q": "How many parameters does Helium, Moshi's text language model, have, and how many tokens was it pretrained on?", "kind": "answerable", "docs": ["2410"], "must": [["7 ?B"], ["2\\.1 ?T"]]},
+  {"id": "q10", "q": "How many hours of audio are in Moshi's unsupervised pre-training audio collection?", "kind": "answerable", "docs": ["2410"], "must": [["7 million"]]},
+  {"id": "q11", "q": "What are the two components of the dynamic chunking mechanism in H-Net?", "kind": "answerable", "docs": ["2507"], "must": [["routing"], ["smoothing"]]},
+  {"id": "q12", "q": "By what factor does H-Net improve data efficiency on DNA modelling compared with isotropic models?", "kind": "answerable", "docs": ["2507"], "must": [["3\\.6"]]},
+  {"id": "q13", "q": "Which dataset and how many tokens were used to train the main language models in the H-Net experiments?", "kind": "answerable", "docs": ["2507"], "must": [["FineWeb"], ["100 ?B"]]},
+  {"id": "q14", "q": "What GPU type did the Transformer authors train on compared with the GPU type used for Moshi?", "kind": "answerable", "docs": ["1706", "2410"], "must": [["P100"], ["H100"]]},
+  {"id": "q15", "q": "What is the carbon footprint of training the original Transformer?", "kind": "unanswerable"},
+  {"id": "q16", "q": "What BLEU score does the Transformer get on English-to-Japanese translation?", "kind": "unanswerable"},
+  {"id": "q17", "q": "Does Moshi support Hindi, and how well?", "kind": "unanswerable"},
+  {"id": "q18", "q": "What dropout rate does H-Net use during training?", "kind": "unanswerable"},
+  {"id": "q19", "q": "How many GPU-hours were needed to train H-Net?", "kind": "unanswerable"},
+  {"id": "q20", "q": "How much does it cost per hour to run Moshi in the cloud?", "kind": "unanswerable"},
+  {"id": "q21", "q": "Who won the 2018 FIFA World Cup?", "kind": "unanswerable"}
+]

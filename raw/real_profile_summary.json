@@ -1,0 +1,308 @@
+{
+  "n_events": 99,
+  "n_baseline": 17,
+  "ttft_ms": {
+    "50": 354.4746000006853,
+    "95": 821.844680000504,
+    "99": 840.4858960010461
+  },
+  "total_ms": {
+    "50": 566.2435999984154,
+    "95": 957.7497200007201,
+    "99": 973.1312240022817
+  },
+  "ttft_fit": {
+    "a_ms": 314.31717175738567,
+    "b_ms_per_prompt_token": 0.1148275567259147,
+    "resid_sd_ms": 188.06079915648627,
+    "resid_max_ms": 494.8124748393941
+  },
+  "ttft_ratio_lognorm_sigma": 0.42508799463811664,
+  "decode_ms_per_token": {
+    "p50": 2.183321311453941,
+    "p95": 3.3568885767650496
+  },
+  "server_queue_time_s": {
+    "p50": 0.055664595,
+    "max": 0.634197948
+  },
+  "limits": {
+    "rpm": {
+      "n": 45,
+      "n_429": 15,
+      "ok_before_first_429": 30,
+      "example_429": {
+        "phase": "rpm",
+        "tag": "r32",
+        "t_wall": 206.5162341594696,
+        "req_prompt_tokens": 10,
+        "max_tokens": 1,
+        "status": 429,
+        "headers": {
+          "retry-after": "2",
+          "x-ratelimit-limit-requests": "1000",
+          "x-ratelimit-remaining-requests": "927",
+          "x-ratelimit-reset-requests": "1h45m7.2s"
+        },
+        "t_headers_ms": 155.12799999851268,
+        "body": "{\"error\":{\"message\":\"Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_01jrm30mdxfb6tnve05g48hrbe` service tier `on_demand` on requests per minute (RPM): Limit 30, Used 30, Requested 1. Please try again in 2s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"requests\",\"code\":\"rate_limit_exceeded\"}}\n",
+        "total_ms": 155.62209999916377,
+        "ttft_ms": null,
+        "chunks": 0
+      }
+    },
+    "tpm": {
+      "n": 5,
+      "n_429": 2,
+      "ok_before_first_429": 3,
+      "example_429": {
+        "phase": "tpm",
+        "tag": "big3",
+        "t_wall": 276.407023191452,
+        "req_prompt_tokens": 2400,
+        "max_tokens": 1,
+        "status": 429,
+        "headers": {
+          "retry-after": "4",
+          "x-ratelimit-limit-requests": "1000",
+          "x-ratelimit-limit-tokens": "8000",
+          "x-ratelimit-remaining-requests": "923",
+          "x-ratelimit-remaining-tokens": "2466",
+          "x-ratelimit-reset-requests": "1h50m52.8s",
+          "x-ratelimit-reset-tokens": "47.434s"
+        },
+        "t_headers_ms": 244.67169999843463,
+        "body": "{\"error\":{\"message\":\"Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_01jrm30mdxfb6tnve05g48hrbe` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 5534, Requested 1930. Please try again in 3.977142857s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n",
+        "total_ms": 245.26300000070478,
+        "ttft_ms": null,
+        "chunks": 0
+      }
+    },
+    "tpm_reserve": {
+      "n": 2,
+      "n_429": 0,
+      "ok_before_first_429": null,
+      "example_429": null
+    },
+    "conc": {
+      "n": 26,
+      "n_429": 0,
+      "ok_before_first_429": null,
+      "example_429": null
+    },
+    "rpm_recover": {
+      "n": 1,
+      "n_429": 0,
+      "ok_before_first_429": null,
+      "example_429": null
+    }
+  },
+  "header_limits_seen": {
+    "x-ratelimit-limit-requests": "1000",
+    "x-ratelimit-limit-tokens": "8000"
+  },
+  "remaining_requests_series": [
+    [
+      0.0,
+      999
+    ],
+    [
+      3.7,
+      997
+    ],
+    [
+      6.9,
+      995
+    ],
+    [
+      9.7,
+      993
+    ],
+    [
+      22.9,
+      991
+    ],
+    [
+      36.0,
+      989
+    ],
+    [
+      49.4,
+      987
+    ],
+    [
+      61.8,
+      986
+    ],
+    [
+      74.4,
+      985
+    ],
+    [
+      77.3,
+      983
+    ],
+    [
+      102.4,
+      982
+    ],
+    [
+      114.6,
+      979
+    ],
+    [
+      114.6,
+      980
+    ],
+    [
+      126.9,
+      975
+    ],
+    [
+      127.0,
+      975
+    ],
+    [
+      126.9,
+      972
+    ],
+    [
+      127.0,
+      970
+    ],
+    [
+      139.4,
+      967
+    ],
+    [
+      139.4,
+      968
+    ],
+    [
+      139.4,
+      964
+    ],
+    [
+      139.4,
+      965
+    ],
+    [
+      139.4,
+      967
+    ],
+    [
+      139.4,
+      963
+    ],
+    [
+      204.9,
+      956
+    ],
+    [
+      204.9,
+      956
+    ],
+    [
+      204.9,
+      956
+    ],
+    [
+      205.1,
+      950
+    ],
+    [
+      205.1,
+      948
+    ],
+    [
+      205.1,
+      947
+    ],
+    [
+      205.3,
+      944
+    ],
+    [
+      205.3,
+      944
+    ],
+    [
+      205.3,
+      939
+    ],
+    [
+      205.6,
+      938
+    ],
+    [
+      205.6,
+      937
+    ],
+    [
+      205.6,
+      937
+    ],
+    [
+      205.9,
+      932
+    ],
+    [
+      205.9,
+      932
+    ],
+    [
+      205.9,
+      930
+    ],
+    [
+      206.5,
+      927
+    ],
+    [
+      206.5,
+      927
+    ],
+    [
+      206.5,
+      927
+    ],
+    [
+      206.7,
+      927
+    ],
+    [
+      206.7,
+      927
+    ],
+    [
+      206.7,
+      927
+    ],
+    [
+      206.8,
+      927
+    ],
+    [
+      206.8,
+      927
+    ],
+    [
+      274.2,
+      925
+    ],
+    [
+      275.7,
+      923
+    ],
+    [
+      277.0,
+      923
+    ],
+    [
+      342.6,
+      921
+    ]
+  ],
+  "total_tokens_spent_by_probe": 25065,
+  "total_requests_by_probe": 99
+}

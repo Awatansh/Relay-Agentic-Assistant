@@ -1,0 +1,109 @@
+## Table 1: Limits you found in the real service
+| Limit | Value you found | How you found it | Confidence (high, medium, low) |
+|---|---|---|---|
+| Requests per minute | 30 (sliding minute; 30 of 45 tiny requests succeeded, the next got 429) | Fired 45 tiny requests (6 in flight) after a 65 s idle; counted 200s before the first 429. 429 body: 'requests per minute (RPM): Limit 30, Used 30'. Docs list 30 for this model. | high |
+| Tokens per minute | 8,000 total per header (x-ratelimit-limit-tokens). A separate input-token cap of 7000 per minute (ITPM) is enforced and is NOT in any header | Sent 3 requests of 1930 prompt tokens in 1 s: all accepted, then 429 'input tokens per minute (ITPM): Limit 7000, Used 5534, Requested 1930'. max_tokens=7500 was NOT reserved (accepted; header dropped only by tokens actually produced). | high |
+| Requests per day | 1,000, refilled continuously (about 1 request per 86.4 s), not reset at midnight | Header x-ratelimit-limit-requests=1000 (the docs say it always means per day). remaining-requests fell from 999 to 921 over 99 probe requests while x-ratelimit-reset-requests grew by 86.4 s per request (1m26.4s -> 1h53m45.6s). Did not exhaust it on purpose. | high for the value, medium for the refill rule |
+| Tokens per day | 200,000, refilled continuously (2.31 tokens/s), not reset at midnight | Hit it for real during burst_real: 429 '(TPD): Limit 200000, Used 199809, Requested 827. Please try again in 4m34.752s.'. (Used+Requested-Limit) x 86400/Limit = 274.8 s, matching the hint, so the bucket refills continuously. Not in any header. My own tally said ~150K at that point: the provider counts tokens I did not log. | high |
+| Requests in flight at once | at least 12; upper bound not found | Waves of 2, 4, 8, 12 identical tiny requests fired together: every one returned 200, latency rose from about 240 ms (2 in flight) to about 430 ms (8 in flight). | medium |
+| What it returns when a limit is hit | HTTP 429, JSON {error:{message,type,code:'rate_limit_exceeded'}}; header retry-after (whole seconds); message names the limit (RPM / ITPM) with Limit, Used, Requested and a 'try again in Xs' hint | Captured 20 real 429s in raw/real_profile.jsonl (retry-after values seen: 1, 2, 4, 5, 6). Normal responses carry no retry-after. 3 429s also hit the baseline phase because my pacing used the 8,000 figure instead of 7,000 ITPM. | high |
+| Time until it recovers | RPM: about 2 s for the first slot (retry-after 2; polling found capacity again in 2.3 s). ITPM: 4 s (retry-after 4). Daily requests: 86.4 s per request | Polled with a tiny request every 2 s after the RPM burst; read retry-after on the token 429s; daily rate from the reset-requests header series. | medium (one sample each) |
+
+## Table 2a: Latency
+| Scenario | Real or stand-in | Requests sent | Duration (s) | Offered rate (per min) | First token p50 / p95 / p99 (ms) | Total time p50 / p95 / p99 (ms) | Replies delivered (n for percentiles) |
+|---|---|---|---|---|---|---|---|
+| steady_real | real | 12 | 223 | 3.3 | 1675 / 4693 / 6317 | 1675 / 4693 / 6317 | 12 |
+| burst_real | real | 10 | 3 | 200.0 | 3 / 363 / 425 | 3 / 363 / 425 | 10 |
+| steady | stand-in | 10 | 183 | 3.3 | 1800 / 2866 / 3058 | 1800 / 2866 / 3058 | 10 |
+| burst | stand-in | 40 | 8 | 300.0 | 3 / 1319 / 1833 | 3 / 1319 / 1833 | 40 |
+| sustained_overload | stand-in | 60 | 122 | 30.5 | 4 / 6100 / 7575 | 4 / 6100 / 7575 | 60 |
+| rpm_halved | stand-in | 20 | 95 | 12.6 | 3 / 2361 / 3370 | 3 / 2361 / 3370 | 20 |
+| daily_exhausted | stand-in | 20 | 57 | 21.1 | 3 / 63 / 949 | 3 / 63 / 949 | 20 |
+
+## Table 2b: Outcomes
+| Scenario | Succeeded % | Rate-limited % | Timed out or given up % | Retries per request | Peak queue length | Tokens per answer | Cost per 1,000 answers (USD, list price) |
+|---|---|---|---|---|---|---|---|
+| steady_real | 100.0 | 0.0 | 0.0 | 0.17 | 1 | 2073 | 2.04 |
+| burst_real | 100.0 | 10.0 | 0.0 | 0.00 | 1 | 41 | 0.06 |
+| steady | 100.0 | 30.0 | 0.0 | 0.20 | 1 | 1988 | 1.98 |
+| burst | 100.0 | 0.0 | 0.0 | 0.00 | 1 | 175 | 0.17 |
+| sustained_overload | 100.0 | 8.3 | 0.0 | 0.13 | 3 | 225 | 0.24 |
+| rpm_halved | 100.0 | 0.0 | 0.0 | 0.00 | 1 | 340 | 0.36 |
+| daily_exhausted | 100.0 | 0.0 | 0.0 | 0.00 | 1 | 120 | 0.12 |
+
+## Table 2c (extra): who got what
+| Scenario | Outcome / tier mix | Requests that saw a 429 | Total 429s | Retries refused by the retry budget | Served from cache or coalesced |
+|---|---|---|---|---|---|
+| steady_real | full=12 | 0 | 0 | 0 | 0 |
+| burst_real | budget=8, full=2 | 1 | 1 | 0 | 0 |
+| steady | full=9, lean=1 | 3 | 3 | 0 | 0 |
+| burst | passages=16, cache=15, coalesced=5, full=3, lean=1 | 0 | 0 | 0 | 20 |
+| sustained_overload | passages=47, lean=8, full=5 | 5 | 6 | 0 | 0 |
+| rpm_halved | passages=14, lean=4, full=2 | 0 | 0 | 0 | 0 |
+| daily_exhausted | budget=19, full=1 | 0 | 0 | 0 | 0 |
+
+## Table 2d (extra): latency of replies written by the model (full or lean tier)
+| Scenario | Replies written by the model (n) | First token p50 / p95 (ms) | Total p50 / p95 (ms) | Time spent waiting p50 / p95 (ms) |
+|---|---|---|---|---|
+| steady_real | 12 | 1675 / 4693 | 1675 / 4693 | 16 / 1640 |
+| burst_real | 2 | 355 / 432 | 355 / 432 | 0 / 0 |
+| steady | 10 | 1800 / 2866 | 1800 / 2866 | 572 / 1226 |
+| burst | 4 | 1483 / 1900 | 1483 / 1900 | 0 / 0 |
+| sustained_overload | 13 | 4410 / 7564 | 4410 / 7564 | 2047 / 4555 |
+| rpm_halved | 6 | 1259 / 3290 | 1259 / 3290 | 181 / 1899 |
+| daily_exhausted | 1 | 1171 / 1171 | 1171 / 1171 | 0 / 0 |
+
+## Table 3: Retrieval settings
+| Setting (piece size, pieces fetched, re-rank yes or no) | Backend | Questions asked | Correct and cited % | Wrong % | Correctly refused % | Tokens per answer | First token p50 / p95 (ms) | Total time p50 / p95 (ms) | raw file |
+|---|---|---|---|---|---|---|---|---|---|
+| 500 chars, 6 pieces, no rerank (full tier) | real | 21 | 52.4 | 14.3 | 33.3 | 1540 | 1004 / 1699 | 1004 / 1699 | quality_real_full_A |
+| 500 chars, 6 pieces, no rerank (lean tier) | real | 21 | 57.1 | 9.5 | 33.3 | 928 | 416 / 606 | 416 / 606 | quality_real_lean_A |
+| 900 chars, 4 pieces, rerank (lean tier) | real | 21 | 57.1 | 9.5 | 33.3 | 1045 | 396 / 654 | 396 / 654 | quality_real_lean_B |
+| 1500 chars, 3 pieces, rerank (lean tier) | real | 21 | 61.9 | 4.8 | 33.3 | 1221 | 408 / 918 | 408 / 918 | quality_real_lean_C |
+| 500 chars, 3 pieces, no rerank (lean tier) | real | 21 | 57.1 | 9.5 | 33.3 | 543 | 367 / 749 | 367 / 749 | quality_real_lean_F |
+
+## Retry experiment (admission control OFF, same load)
+| Retry policy | Requests | HTTP attempts sent | Attempts per request | 429s the provider issued | Calls provider served | Delivered % | Correct and cited % | Total p50 / p95 (ms) | Given up / failed % |
+|---|---|---|---|---|---|---|---|---|---|
+| naive_retry | 40 | 239 | 5.97 | 225 | 13 | 100.0 | 37.5 | 9094 / 10450 | 0.0 |
+| bounded_retry | 40 | 15 | 0.38 | 1 | 13 | 100.0 | 35.0 | 4 / 1409 | 0.0 |
+
+## Slowest delivered request in sustained_overload
+Request `sustained_overload-001` (full tier, outcome degraded): total 8220 ms, first token at 8220 ms.
+
+| Span | kind | start ms | end ms | length ms |
+|---|---|---|---|---|
+| understand:failed_attempt | retry | 1 | 5021 | 5020 |
+| understand:backoff | retry | 5021 | 5395 | 374 |
+| understand | work | 5395 | 5760 | 366 |
+| retrieve | work | 5761 | 5762 | 1 |
+| draft | work | 5762 | 8211 | 2449 |
+| verify:failed_attempt | retry | 8211 | 8217 | 5 |
+
+Waiting 1 ms, working 2817 ms, retrying 5399 ms; unaccounted 3 ms.
+
+## Slowest delivered request in burst_real
+Request `burst_real-001` (full tier, outcome degraded): total 441 ms, first token at 441 ms.
+
+| Span | kind | start ms | end ms | length ms |
+|---|---|---|---|---|
+| understand | work | 1 | 303 | 302 |
+| retrieve | work | 303 | 304 | 1 |
+| draft:failed_attempt | retry | 304 | 439 | 134 |
+
+Waiting 0 ms, working 304 ms, retrying 134 ms; unaccounted 2 ms.
+
+## Slowest delivered request in steady_real
+Request `steady_real-006` (full tier, outcome answered): total 6723 ms, first token at 6723 ms.
+
+| Span | kind | start ms | end ms | length ms |
+|---|---|---|---|---|
+| admission | wait | 0 | 16 | 16 |
+| understand | work | 16 | 471 | 455 |
+| retrieve | work | 471 | 473 | 2 |
+| draft:failed_attempt | retry | 473 | 5553 | 5080 |
+| draft:backoff | retry | 5553 | 5866 | 313 |
+| draft | work | 5866 | 6348 | 482 |
+| verify | work | 6348 | 6722 | 374 |
+
+Waiting 16 ms, working 1312 ms, retrying 5393 ms; unaccounted 2 ms.

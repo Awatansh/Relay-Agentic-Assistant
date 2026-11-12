@@ -1,0 +1,68 @@
+{
+  "scenario": "storm_bounded_retry",
+  "backend": "standin",
+  "requests": 40,
+  "offered_per_min": 400.0,
+  "planned_duration_s": 6.0,
+  "wall_s": 6.0,
+  "peak_queue": 1,
+  "client_stats": {
+    "attempts": 15,
+    "retries": 1,
+    "n429": 1,
+    "budget_denied": 0,
+    "circuit_open": 24
+  },
+  "limiter_429_events": [
+    {
+      "t": 36043.3117792,
+      "kind": "itpm",
+      "retry_after": 60.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6894, Requested 946. Please try again in 59.12s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    }
+  ],
+  "limits_after": {
+    "rpm": 30,
+    "tpm": 8000,
+    "itpm": 7000,
+    "rpd": 1000
+  },
+  "pipeline_counters": {
+    "cache_hit": 0,
+    "coalesced": 0,
+    "local_refusals": 0,
+    "revisions": 1,
+    "grounding_fail": 0,
+    "llm_fallback": 39
+  },
+  "standin_cfg": {
+    "rpm": 30,
+    "tpm": 8000,
+    "itpm": 7000,
+    "fail_rate": 0.02,
+    "hang_rate": 0.01,
+    "slow_success_rate": 0.02
+  },
+  "standin_counts": {
+    "total": 15,
+    "ok": 13,
+    "r429": 1,
+    "fail": 1,
+    "hang": 0,
+    "max_inflight": 7
+  },
+  "note": "40 requests in 6 s, admission control OFF",
+  "admission": false,
+  "retry": {
+    "max_attempts": 3,
+    "base_delay_s": 0.5,
+    "max_delay_s": 8.0,
+    "jitter": true,
+    "honor_retry_after": true,
+    "attempt_timeout_s": 5.0,
+    "retry_budget_ratio": 0.2,
+    "retry_budget_burst": 10,
+    "use_budget": true,
+    "cooldown_on_429": true
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "scenario": "burst_real",
+  "backend": "real",
+  "requests": 10,
+  "offered_per_min": 200.0,
+  "planned_duration_s": 3.0,
+  "wall_s": 2.5,
+  "peak_queue": 1,
+  "client_stats": {
+    "attempts": 3,
+    "retries": 0,
+    "n429": 1,
+    "budget_denied": 0,
+    "circuit_open": 0
+  },
+  "limiter_429_events": [
+    {
+      "t": 34458.3206832,
+      "kind": "tpd",
+      "retry_after": 275.0,
+      "body": "{\"error\":{\"message\":\"Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_01jrm30mdxfb6tnve05g48hrbe` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199809, Requested 827. Please try again in 4m34.752s. Need more tokens? Upgrade to Dev Tier today at https://cons"
+    }
+  ],
+  "limits_after": {
+    "rpm": 30,
+    "tpm": 8000,
+    "itpm": 7000,
+    "rpd": 1000
+  },
+  "pipeline_counters": {
+    "cache_hit": 0,
+    "coalesced": 0,
+    "local_refusals": 1,
+    "revisions": 0,
+    "grounding_fail": 0,
+    "llm_fallback": 1
+  },
+  "standin_cfg": null,
+  "standin_counts": null,
+  "note": "real Groq, 10 requests in 3 s",
+  "admission": true,
+  "retry": {
+    "max_attempts": 3,
+    "base_delay_s": 0.5,
+    "max_delay_s": 8.0,
+    "jitter": true,
+    "honor_retry_after": true,
+    "attempt_timeout_s": 5.0,
+    "retry_budget_ratio": 0.2,
+    "retry_budget_burst": 10,
+    "use_budget": true,
+    "cooldown_on_429": true
+  }
+}

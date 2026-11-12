@@ -1,0 +1,47 @@
+{
+  "scenario": "steady_real",
+  "backend": "real",
+  "requests": 12,
+  "offered_per_min": 3.3,
+  "planned_duration_s": 220.0,
+  "wall_s": 222.7,
+  "peak_queue": 1,
+  "client_stats": {
+    "attempts": 38,
+    "retries": 2,
+    "n429": 0,
+    "budget_denied": 0,
+    "circuit_open": 0
+  },
+  "limiter_429_events": [],
+  "limits_after": {
+    "rpm": 30,
+    "tpm": 8000,
+    "itpm": 7000,
+    "rpd": 1000
+  },
+  "pipeline_counters": {
+    "cache_hit": 0,
+    "coalesced": 0,
+    "local_refusals": 0,
+    "revisions": 0,
+    "grounding_fail": 0,
+    "llm_fallback": 0
+  },
+  "standin_cfg": null,
+  "standin_counts": null,
+  "note": "real Groq, 3 req/min, full tier",
+  "admission": true,
+  "retry": {
+    "max_attempts": 3,
+    "base_delay_s": 0.5,
+    "max_delay_s": 8.0,
+    "jitter": true,
+    "honor_retry_after": true,
+    "attempt_timeout_s": 5.0,
+    "retry_budget_ratio": 0.2,
+    "retry_budget_burst": 10,
+    "use_budget": true,
+    "cooldown_on_429": true
+  }
+}

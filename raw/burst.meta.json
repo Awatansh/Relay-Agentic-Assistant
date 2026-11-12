@@ -1,0 +1,61 @@
+{
+  "scenario": "burst",
+  "backend": "standin",
+  "requests": 40,
+  "offered_per_min": 300.0,
+  "planned_duration_s": 8.0,
+  "wall_s": 8.0,
+  "peak_queue": 1,
+  "client_stats": {
+    "attempts": 10,
+    "retries": 0,
+    "n429": 0,
+    "budget_denied": 0,
+    "circuit_open": 0
+  },
+  "limiter_429_events": [],
+  "limits_after": {
+    "rpm": 30,
+    "tpm": 8000,
+    "itpm": 7000,
+    "rpd": 1000
+  },
+  "pipeline_counters": {
+    "cache_hit": 15,
+    "coalesced": 5,
+    "local_refusals": 0,
+    "revisions": 0,
+    "grounding_fail": 0,
+    "llm_fallback": 0
+  },
+  "standin_cfg": {
+    "rpm": 30,
+    "tpm": 8000,
+    "itpm": 7000,
+    "fail_rate": 0.02,
+    "hang_rate": 0.01,
+    "slow_success_rate": 0.02
+  },
+  "standin_counts": {
+    "total": 10,
+    "ok": 10,
+    "r429": 0,
+    "fail": 0,
+    "hang": 0,
+    "max_inflight": 4
+  },
+  "note": "40 requests inside 8 s, most asking the same few things (an incident)",
+  "admission": true,
+  "retry": {
+    "max_attempts": 3,
+    "base_delay_s": 0.5,
+    "max_delay_s": 8.0,
+    "jitter": true,
+    "honor_retry_after": true,
+    "attempt_timeout_s": 5.0,
+    "retry_budget_ratio": 0.2,
+    "retry_budget_burst": 10,
+    "use_budget": true,
+    "cooldown_on_429": true
+  }
+}

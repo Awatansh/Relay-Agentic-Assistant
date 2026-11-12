@@ -1,0 +1,80 @@
+{
+  "scenario": "steady",
+  "backend": "standin",
+  "requests": 10,
+  "offered_per_min": 3.3,
+  "planned_duration_s": 180.0,
+  "wall_s": 183.1,
+  "peak_queue": 1,
+  "client_stats": {
+    "attempts": 32,
+    "retries": 2,
+    "n429": 3,
+    "budget_denied": 0,
+    "circuit_open": 0
+  },
+  "limiter_429_events": [
+    {
+      "t": 35579.6196176,
+      "kind": "itpm",
+      "retry_after": 19.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6237, Requested 970. Please try again in 18.78s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 35600.3777632,
+      "kind": "itpm",
+      "retry_after": 18.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6588, Requested 853. Please try again in 17.81s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    },
+    {
+      "t": 35638.1499942,
+      "kind": "itpm",
+      "retry_after": 1.0,
+      "body": "{\"error\": {\"message\": \"Rate limit reached for model `standin-qwen` in organization `org_standin` service tier `on_demand` on input tokens per minute (ITPM): Limit 7000, Used 6664, Requested 504. Please try again in 0.41s.\", \"type\": \"tokens\", \"code\": \"rate_limit_exceeded\"}}"
+    }
+  ],
+  "limits_after": {
+    "rpm": 30,
+    "tpm": 8000,
+    "itpm": 7000,
+    "rpd": 1000
+  },
+  "pipeline_counters": {
+    "cache_hit": 0,
+    "coalesced": 0,
+    "local_refusals": 0,
+    "revisions": 1,
+    "grounding_fail": 0,
+    "llm_fallback": 2
+  },
+  "standin_cfg": {
+    "rpm": 30,
+    "tpm": 8000,
+    "itpm": 7000,
+    "fail_rate": 0.02,
+    "hang_rate": 0.01,
+    "slow_success_rate": 0.02
+  },
+  "standin_counts": {
+    "total": 32,
+    "ok": 28,
+    "r429": 3,
+    "fail": 1,
+    "hang": 0,
+    "max_inflight": 1
+  },
+  "note": "3 req/min, about what the free tier can serve with every reply fully checked",
+  "admission": true,
+  "retry": {
+    "max_attempts": 3,
+    "base_delay_s": 0.5,
+    "max_delay_s": 8.0,
+    "jitter": true,
+    "honor_retry_after": true,
+    "attempt_timeout_s": 5.0,
+    "retry_budget_ratio": 0.2,
+    "retry_budget_burst": 10,
+    "use_budget": true,
+    "cooldown_on_429": true
+  }
+}
